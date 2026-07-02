@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Cloud & AI Engineer</title>
+<meta name="description" content="Cloud Network Engineer at Microsoft building AI systems on Azure. Portfolio, projects, and writing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1120;
+    --surface:#111A2E;
+    --surface-2:#15203A;
+    --border:#1E2A44;
+    --text:#E6ECF5;
+    --muted:#8A97AD;
+    --net:#4CC3FF;   /* signal cyan — the network years */
+    --ai:#FFB454;    /* amber — the AI direction */
+    --ok:#4ADE80;
+    --radius:12px;
+    --maxw:1000px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--net);color:var(--bg)}
+  a{color:var(--net);text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--ai);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:'IBM Plex Mono',monospace}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,17,32,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-family:'IBM Plex Mono',monospace;font-size:.9rem;color:var(--text)}
+  .logo .prompt{color:var(--net)}
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{color:var(--muted);font-size:.88rem;font-weight:500}
+  .nav-links a:hover{color:var(--text);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header{padding:84px 0 72px;border-bottom:1px solid var(--border)}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--net);margin-bottom:18px;
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(2.3rem,5.5vw,3.6rem);line-height:1.08;
+    letter-spacing:-.02em;margin-bottom:20px;
+  }
+  h1 .grad{
+    background:linear-gradient(90deg,var(--net) 0%,var(--ai) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lede{color:var(--muted);font-size:1.12rem;max-width:640px;margin-bottom:34px}
+  .lede strong{color:var(--text);font-weight:600}
+
+  /* Signature: the career traceroute */
+  .trace{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.86rem;line-height:2;
+    max-width:640px;
+    overflow-x:auto;
+  }
+  .trace .cmd{color:var(--text)}
+  .trace .cmd::before{content:'$ ';color:var(--net)}
+  .trace .hop{display:flex;gap:14px;color:var(--muted);white-space:nowrap;opacity:0;animation:hop .4s ease forwards}
+  .trace .hop .n{color:var(--border);min-width:1.2em;text-align:right}
+  .trace .hop .name{color:var(--text);min-width:15em}
+  .trace .hop .ms{color:var(--net)}
+  .trace .hop.ai .ms{color:var(--ai)}
+  .trace .hop.ai .name{color:var(--ai)}
+  .trace .hop:nth-child(2){animation-delay:.3s}
+  .trace .hop:nth-child(3){animation-delay:.6s}
+  .trace .hop:nth-child(4){animation-delay:.9s}
+  .trace .hop:nth-child(5){animation-delay:1.2s}
+  .trace .hop:nth-child(6){animation-delay:1.5s}
+  .trace .done{color:var(--ok);opacity:0;animation:hop .4s ease 1.9s forwards}
+  @keyframes hop{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+
+  .cta-row{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:11px 22px;border-radius:8px;
+    font-weight:600;font-size:.92rem;border:1px solid var(--border);
+    color:var(--text);background:var(--surface);transition:border-color .2s,transform .2s;
+  }
+  .btn:hover{border-color:var(--net);text-decoration:none;transform:translateY(-1px)}
+  .btn.primary{background:var(--net);color:var(--bg);border-color:var(--net)}
+  .btn.primary:hover{border-color:var(--net);filter:brightness(1.1)}
+
+  /* ---------- Sections ---------- */
+  section{padding:72px 0;border-bottom:1px solid var(--border)}
+  h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:1.7rem;letter-spacing:-.01em;margin-bottom:8px;
+  }
+  .sec-label{
+    font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:10px;
+  }
+  .sec-intro{color:var(--muted);max-width:640px;margin-bottom:40px}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:start}
+  .about-grid p{color:var(--muted);margin-bottom:16px}
+  .about-grid p strong{color:var(--text)}
+  .fact-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+  .fact{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border);font-size:.9rem}
+  .fact:last-child{border-bottom:none}
+  .fact .k{color:var(--muted)}
+  .fact .v{color:var(--text);font-weight:500;text-align:right}
+
+  /* Skills — the bridge */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .skill-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px}
+  .skill-col h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;margin-bottom:4px}
+  .skill-col .sub{font-size:.82rem;color:var(--muted);margin-bottom:18px;font-family:'IBM Plex Mono',monospace}
+  .skill-col.net{border-top:3px solid var(--net)}
+  .skill-col.ai{border-top:3px solid var(--ai)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:.76rem;
+    padding:5px 11px;border-radius:6px;
+    background:var(--surface-2);border:1px solid var(--border);color:var(--text);
+  }
+
+  /* Projects */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:24px;display:flex;flex-direction:column;gap:12px;
+    transition:border-color .2s,transform .2s;
+  }
+  .card:hover{border-color:var(--net);transform:translateY(-2px)}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .card h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;line-height:1.3}
+  .badge{
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.06em;
+    padding:4px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;
+  }
+  .badge.ship{background:rgba(74,222,128,.12);color:var(--ok);border:1px solid rgba(74,222,128,.3)}
+  .badge.wip{background:rgba(255,180,84,.12);color:var(--ai);border:1px solid rgba(255,180,84,.3)}
+  .badge.plan{background:rgba(138,151,173,.12);color:var(--muted);border:1px solid var(--border)}
+  .card p{color:var(--muted);font-size:.9rem;flex-grow:1}
+  .card .stack{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--net)}
+  .card a.repo{font-size:.85rem;font-weight:500}
+
+  /* Writing */
+  .post{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid var(--border)}
+  .post:last-child{border-bottom:none}
+  .post a{color:var(--text);font-weight:500;font-size:1rem}
+  .post a:hover{color:var(--net)}
+  .post .date{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+  /* Roadmap banner */
+  .roadmap-banner{
+    background:linear-gradient(135deg,rgba(76,195,255,.08),rgba(255,180,84,.08));
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  }
+  .roadmap-banner h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;margin-bottom:6px}
+  .roadmap-banner p{color:var(--muted);font-size:.9rem;max-width:520px}
+
+  /* Footer */
+  footer{padding:56px 0 64px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
+  .foot-links{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+  .foot-links a{color:var(--muted);font-size:.9rem}
+  .foot-links a:hover{color:var(--net)}
+  .foot-note{color:var(--muted);font-size:.8rem;font-family:'IBM Plex Mono',monospace;margin-top:26px}
+
+  @media(max-width:760px){
+    .about-grid,.skills-grid{grid-template-columns:1fr}
+    header{padding:56px 0 52px}
+    section{padding:52px 0}
+    .nav-links{gap:16px}
+    .nav-links li:nth-child(n+4){display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <span class="logo"><span class="prompt">~/</span>your-name</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Cloud Network Engineer @ Microsoft · Pune, India</p>
+    <h1>I keep enterprise networks running.<br>Now I'm teaching them to <span class="grad">think</span>.</h1>
+    <p class="lede">
+      I'm <strong>Your Name</strong> — an Azure networking engineer building
+      <strong>AI systems on the infrastructure I know best</strong>: RAG pipelines, AI agents,
+      and LLM apps deployed securely behind the same private networks I've spent years operating.
+    </p>
+
+    <!-- Signature element: career traceroute -->
+    <div class="trace" role="img" aria-label="A terminal traceroute showing a career path from Azure networking to AI engineering">
+      <div class="cmd">traceroute to ai-engineer.career (max 6 hops)</div>
+      <div class="hop"><span class="n">1</span><span class="name">azure-networking.core</span><span class="ms">VNets · ExpressRoute · Firewall</span></div>
+      <div class="hop"><span class="n">2</span><span class="name">automation.layer</span><span class="ms">Python · Bicep · KQL · CI/CD</span></div>
+      <div class="hop"><span class="n">3</span><span class="name">ml-foundations.deep</span><span class="ms">PyTorch · Transformers</span></div>
+      <div class="hop ai"><span class="n">4</span><span class="name">rag-systems.azure</span><span class="ms">AI Search · Evals · Guardrails</span></div>
+      <div class="hop ai"><span class="n">5</span><span class="name">ai-agents.platform</span><span class="ms">MCP · Multi-agent · AKS</span></div>
+      <div class="hop ai"><span class="n">6</span><span class="name">ai-engineer.career</span><span class="ms">in progress…</span></div>
+      <div class="done">✓ route established — 12-month transition underway</div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="sec-label">// about</p>
+    <h2>From packets to parameters</h2>
+    <div class="about-grid">
+      <div>
+        <p>I've spent my career deep in <strong>Azure networking</strong> — designing hub-spoke topologies, untangling ExpressRoute problems, writing KQL against terabytes of flow logs, and supporting enterprise customers when production is on fire.</p>
+        <p>That work taught me the things AI engineering actually needs: <strong>distributed systems intuition, production discipline, root-cause thinking, and infrastructure-as-code habits</strong>. Modern AI platforms are cloud systems with models in the middle — and I already speak the cloud half fluently.</p>
+        <p>I'm now on a structured 12-month journey into applied AI: PyTorch fundamentals, production RAG, AI agents, fine-tuning, and LLMOps — all built and deployed <strong>in public, on Azure</strong>. Every project below ships with IaC, CI/CD, and an evaluation suite, because "it demos well" isn't the same as "it's production-quality."</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact"><span class="k">Role</span><span class="v">Cloud Network Engineer</span></div>
+        <div class="fact"><span class="k">Company</span><span class="v">Microsoft</span></div>
+        <div class="fact"><span class="k">Focus</span><span class="v">Azure Networking → AI</span></div>
+        <div class="fact"><span class="k">Building toward</span><span class="v">Applied AI Engineer</span></div>
+        <div class="fact"><span class="k">Location</span><span class="v">Pune, India</span></div>
+        <div class="fact"><span class="k">Roadmap</span><span class="v"><a href="https://YOUR-USERNAME.github.io/ai-transition-roadmap/">52-week plan ↗</a></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="sec-label">// skills</p>
+    <h2>Two stacks, one bridge</h2>
+    <p class="sec-intro">The left column is where I come from. The right column is where I'm going. The overlap — Python, IaC, observability, CI/CD — is the bridge I'm building across.</p>
+    <div class="skills-grid">
+      <div class="skill-col net">
+        <h3>Cloud &amp; Network Foundations</h3>
+        <p class="sub">production-proven</p>
+        <div class="tags">
+          <span class="tag">Azure VNets</span><span class="tag">Hub-Spoke</span><span class="tag">ExpressRoute</span>
+          <span class="tag">Virtual WAN</span><span class="tag">Azure Firewall</span><span class="tag">NSGs / UDRs</span>
+          <span class="tag">Private Link</span><span class="tag">DNS</span><span class="tag">Load Balancers</span>
+          <span class="tag">Bicep / ARM</span><span class="tag">PowerShell</span><span class="tag">Azure DevOps</span>
+          <span class="tag">KQL</span><span class="tag">Azure Monitor</span><span class="tag">Log Analytics</span>
+          <span class="tag">RCA</span><span class="tag">Customer Engineering</span>
+        </div>
+      </div>
+      <div class="skill-col ai">
+        <h3>AI Engineering Stack</h3>
+        <p class="sub">building &amp; shipping — 2026</p>
+        <div class="tags">
+          <span class="tag">Python (adv.)</span><span class="tag">FastAPI</span><span class="tag">Pydantic</span>
+          <span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">Azure OpenAI</span>
+          <span class="tag">Azure AI Foundry</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span>
+          <span class="tag">LangChain / LangGraph</span><span class="tag">Semantic Kernel</span><span class="tag">MCP</span>
+          <span class="tag">AI Agents</span><span class="tag">LoRA / QLoRA</span><span class="tag">Hugging Face</span>
+          <span class="tag">Docker</span><span class="tag">AKS</span><span class="tag">LLM Evals</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="sec-label">// projects</p>
+    <h2>Built in public</h2>
+    <p class="sec-intro">Progressively harder AI systems, all on Azure, all open source. Statuses update as the 52-week roadmap advances — this page is the scoreboard.</p>
+    <div class="proj-grid">
+
+      <div class="card">
+        <div class="card-top"><h3>Networking Copilot</h3><span class="badge wip">IN PROGRESS</span></div>
+        <p>Chat assistant that performs live Azure network diagnostics — explains effective routes, generates NSG rules, and answers "why can't A reach B?" via function calling against real APIs.</p>
+        <span class="stack">Azure OpenAI · FastAPI · Function Calling</span>
+        <a class="repo" href="https://github.com/YOUR-USERNAME/networking-copilot">View repo →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Enterprise RAG System</h3><span class="badge plan">PLANNED</span></div>
+        <p>Production-grade RAG over enterprise docs: hybrid retrieval, semantic reranking, citations, RAGAS evals in CI, Content Safety guardrails — all behind Private Endpoints.</p>
+        <span class="stack">Azure AI Search · RAGAS · Private Link · Bicep</span>
+        <a class="repo" href="https://github.com/YOUR-USERNAME/enterprise-rag">View repo →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>azure-network-mcp</h3><span class="badge plan">PLANNED</span></div>
+        <p>Open-source MCP server exposing Azure network diagnostics — NSG lookups, route tables, flow-log queries — as tools any AI agent can call.</p>
+        <span class="stack">MCP · Python · Azure SDK</span>
+        <a class="repo" href="https://github.com/YOUR-USERNAME/azure-network-mcp">View repo →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Incident RCA Assistant</h3><span class="badge plan">PLANNED</span></div>
+        <p>An agent that investigates incidents autonomously — runs KQL against Log Analytics, correlates change events, and drafts a structured root-cause analysis with evidence.</p>
+        <span class="stack">AI Agents · KQL · Log Analytics · Cosmos DB</span>
+        <a class="repo" href="https://github.com/YOUR-USERNAME/incident-rca-assistant">View repo →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Azure Cost Optimization Agent</h3><span class="badge plan">PLANNED</span></div>
+        <p>Finds cloud waste — idle gateways, orphaned disks, oversized SKUs — ranks the savings, and drafts remediation PRs as Bicep diffs with human approval.</p>
+        <span class="stack">Agents · Cost Management API · AKS · Docker</span>
+        <a class="repo" href="https://github.com/YOUR-USERNAME/cost-optimization-agent">View repo →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Multi-Agent Cloud Ops Platform</h3><span class="badge plan">CAPSTONE</span></div>
+        <p>The flagship: a supervisor orchestrating specialist agents (diagnostics, RCA, cost, deployment) over a shared MCP tool layer — with tracing, evals, and eval-gated CI/CD on AKS.</p>
+        <span class="stack">LangGraph · MCP · AKS · OpenTelemetry</span>
+        <a class="repo" href="https://github.com/YOUR-USERNAME/multi-agent-cloud-ops">View repo →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="wrap">
+    <p class="sec-label">// writing</p>
+    <h2>Notes from the transition</h2>
+    <p class="sec-intro">Documenting the journey — AI engineering explained for cloud infrastructure people. Replace these with your published posts as you write them.</p>
+    <div>
+      <div class="post"><a href="#">From PowerShell to Python: A Network Engineer's Notes</a><span class="date">coming soon</span></div>
+      <div class="post"><a href="#">Embeddings Explained with Azure Support Tickets</a><span class="date">coming soon</span></div>
+      <div class="post"><a href="#">Deploying Azure OpenAI Behind Private Endpoints</a><span class="date">coming soon</span></div>
+      <div class="post"><a href="#">I Benchmarked RAG Retrieval Strategies on Azure AI Search</a><span class="date">coming soon</span></div>
+      <div class="post"><a href="#">LLM Observability with Azure Monitor and KQL</a><span class="date">coming soon</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="roadmap-banner">
+      <div>
+        <h3>Following a 52-week public roadmap</h3>
+        <p>Every week has topics, labs, deliverables, and commit goals — from PyTorch fundamentals to a multi-agent platform on AKS. The plan itself is open source.</p>
+      </div>
+      <a class="btn primary" href="https://YOUR-USERNAME.github.io/ai-transition-roadmap/">Read the roadmap →</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h2 style="margin-bottom:8px">Let's connect</h2>
+        <p style="color:var(--muted);max-width:420px">Open to conversations about AI engineering, Azure architecture, and the road between them.</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="mailto:you@example.com">Email</a></li>
+        <li><a href="https://github.com/YOUR-USERNAME">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a></li>
+        <li><a href="https://huggingface.co/YOUR-USERNAME">Hugging Face</a></li>
+      </ul>
+    </div>
+    <p class="foot-note">$ built by hand · hosted on github pages · © 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
